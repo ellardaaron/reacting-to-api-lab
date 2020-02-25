@@ -1,3 +1,7 @@
+This project is phase 1 of the lab. It demostrates how to pull information and display it using life cycle componentDidMount() 
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
