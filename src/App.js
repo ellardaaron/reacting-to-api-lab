@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import 'es6-promise';
+import 'isomorphic-fetch';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export class App extends Component {
+
+  state = {
+    movies: []
+  }
+
+  componentDidMount() {
+    fetch("https://ghibliapi.herokuapp.com/films")
+      .then(res => res.json())
+      .then(movieList => {
+        this.setState({ movies: movieList })
+      })
+  }
+
+  render() {
+    return (
+
+          <>
+          {this.state.movies.map((movie) => (
+            <div className="card" key={movie.id}>
+            <div className="card-body">
+              <h5 className="card-title">{movie.title}</h5>
+              <p className="card-text">{movie.description}</p>
+            </div>
+          </div>
+          ))}
+          </>
+
+    )
+  }
 }
 
-export default App;
+export default App
+
